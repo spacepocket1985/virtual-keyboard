@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+}
+
+body {
+  background-color: #fff;
+}
+
+.wrapper {
+  width: 80rem;
+  height: 80vh;
+  margin: 10vh auto;
+}
+
+.monitor {
+  display: block;
+  width: 70rem;
+  height: 20rem;
+  margin: 1rem auto 1rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #444444;
+}
+
+.title {
+  font-size: 2.3rem;
+  padding: 2rem;
+  color: #edb20f;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.description,
+.language {
+  font-size: 1.5rem;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 70.4rem;
+    margin: 0 auto;
+    padding: .5rem 0;
+    background: #545353;
+    border: .3rem solid #edb20f;
+    border-radius: .5rem;
+}
+
+.keyboard-line {
+  display: flex;
+  width: 69rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  margin-right: .5rem;
+  margin-bottom: .5rem;
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.8rem;
+  line-height: 4rem;
+  border-radius: .4rem;
+  text-align: center;
+  background-image: linear-gradient(to bottom, #edb20f, #b6810d);
+  cursor: pointer;
+  user-select: none;
+}
+.keyboard-line .key:last-child {
+  margin-right: 0;
+}
+
+.Backspace, .CapsLock, .ShiftLeft {
+  width: 10rem;
+}
+.Tab {
+  width: 5rem;
+}
+.Delete {
+  width: 4.4rem;
+}
+.Enter, .ShiftRight {
+  width: 8.6rem;
+}
+.Space {
+  width: 32.5rem;
+}
