@@ -1,7 +1,7 @@
 import createNewElement from './modules/create-new-element.js';
-import createKeybordKey from './modules/create-keybord-key.js'
+import createKeybordKey from './modules/create-keybord-key.js';
+import illuminationKey from './modules/illumination-key.js'
 // import keyboard from './modules/keyboard.js'
-
 
 const descriptionText = 'Клавиатура создана в операционной системе Windows';
 const languageText = 'Для переключения языка комбинация: левыe ctrl + alt';
@@ -51,3 +51,6 @@ for (let i = 0; i < 5; i++) {
     createKeybordKey('div', keyEventCode[i][j], keyboardSymbol[i][j], keyboardLine);
   }
 }
+
+document.addEventListener('keyup',illuminationKey);
+document.addEventListener('keydown',illuminationKey);
