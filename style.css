@@ -81,7 +81,8 @@ body {
 }
 
 .key:hover,
-.key:active {
+.key:active,
+.active-special-key {
   background-image: linear-gradient(to bottom, #252524, #5b5a58);
   color: #edb20f;
   border-radius: .4rem;
@@ -125,4 +126,8 @@ body {
 
 .Space {
   width: 32.5rem;
+}
+
+.caps-key-on {
+  text-transform: uppercase;
 }

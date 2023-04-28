@@ -83,6 +83,18 @@ let keybord = {
       monitor.selectionStart = monitor.selectionStart - 1;
     }
 
+    if (e.key === 'CapsLock') {
+      const capsLockey = document.querySelector('.CapsLock');
+      const keysForCaps = document.querySelectorAll('[keyCode^="Key"]');
+      console.log(keysForCaps)
+      capsLockey.classList.toggle('active-special-key')
+      keysForCaps.forEach(key=>{
+        key.classList.toggle('caps-key-on')
+        key.classList.contains('caps-key-on')?( key.textContent = key.textContent.toUpperCase()):( key.textContent = key.textContent.toLowerCase())
+       
+      })
+    }
+
   }
 
 }

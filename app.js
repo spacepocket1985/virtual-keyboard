@@ -47,7 +47,6 @@ for (let i = 0; i < 5; i++) {
   }
 }
 
-
 document.addEventListener('keydown', (e) => {
   pressKeybordKey(e);
   printKeybordKey(e);
