@@ -69,7 +69,7 @@ body {
   margin-bottom: .5rem;
   width: 4rem;
   height: 4rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   line-height: 4rem;
   border-radius: .4rem;
   border: .2rem solid transparent;
@@ -120,7 +120,7 @@ body {
 
 .Enter,
 .ShiftRight {
-  width: 8.6rem;
+  width: 9.3rem;
 }
 
 .Space {

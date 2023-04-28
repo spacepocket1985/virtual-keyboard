@@ -1,7 +1,6 @@
 import createNewElement from './modules/create-new-element.js';
 import createKeybordKey from './modules/create-keybord-key.js';
-import illuminationKey from './modules/illumination-key.js'
-// import keyboard from './modules/keyboard.js'
+import { pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js'
 
 const descriptionText = 'Клавиатура создана в операционной системе Windows';
 const languageText = 'Для переключения языка комбинация: левыe ctrl + alt';
@@ -25,7 +24,6 @@ const language = createNewElement('p', 'language', languageText);
 wrapper.append(language);
 
 const keyboardLines = document.querySelectorAll('.keyboardLine');
-console.log(keyboardLines)
 
 
 const keyboardSymbol = [
@@ -33,7 +31,7 @@ const keyboardSymbol = [
   ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del'],
   ['Capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter'],
   ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift'],
-  ['Ctrl','Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl']
+  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl']
 ];
 
 const keyEventCode = [
@@ -52,5 +50,11 @@ for (let i = 0; i < 5; i++) {
   }
 }
 
-document.addEventListener('keyup',illuminationKey);
-document.addEventListener('keydown',illuminationKey);
+
+document.addEventListener('keydown', (e) => {
+  pressKeybordKey(e);
+  printKeybordKey(e);
+  e.preventDefault();
+});
+document.addEventListener('keyup', releaseKeybordKey);
+
