@@ -60,6 +60,11 @@ let keybord = {
       monitor.selectionStart = posStart + 1;
     }
 
+    if (key.classList.contains('ArrowDown')) {
+      console.log(monitor.selectionStart, monitor.selectionEnd);
+
+    }
+
     if (key.classList.contains('ArrowLeft')) {
       monitor.selectionStart--;
       monitor.selectionEnd = posEnd - 1;
@@ -67,15 +72,15 @@ let keybord = {
 
     if (key.classList.contains('ArrowRight')) {
       monitor.selectionEnd++;
-      monitor.selectionStart = posStart - 1;
+      monitor.selectionStart = posStart + 1;
     }
 
-    if (e.shiftKey && e.key == 'ArrowLeft') {
+    if (e.shiftKey && e.key === 'ArrowLeft') {
       monitor.selectionEnd = monitor.selectionEnd + 1;
     }
 
-    if (e.shiftKey && e.key == 'ArrowRight') {
-      monitor.selectionStart = monitor.selectionStart + 1;
+    if (e.shiftKey && e.key === 'ArrowRight') {
+      monitor.selectionStart = monitor.selectionStart - 1;
     }
 
   }
