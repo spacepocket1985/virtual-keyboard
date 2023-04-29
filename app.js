@@ -1,6 +1,6 @@
 import createNewElement from './modules/create-new-element.js';
 import createKeybordKey from './modules/create-keybord-key.js';
-import { pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js'
+import { switchLanguage, pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js'
 
 const descriptionText = 'Клавиатура создана в операционной системе Windows';
 const languageText = 'Для переключения языка комбинация: левыe ctrl + alt';
@@ -15,6 +15,7 @@ const monitor = createNewElement('textarea', 'monitor');
 wrapper.append(monitor);
 
 const keyboard = createNewElement('div', 'keyboard');
+keyboard.classList.add('lang-eng');
 wrapper.append(keyboard);
 
 const description = createNewElement('p', 'description', descriptionText);
@@ -48,6 +49,7 @@ for (let i = 0; i < 5; i++) {
 }
 
 document.addEventListener('keydown', (e) => {
+  switchLanguage(e);
   pressKeybordKey(e);
   printKeybordKey(e);
   e.preventDefault();

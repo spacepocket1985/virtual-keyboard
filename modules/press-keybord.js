@@ -1,4 +1,42 @@
 let keybord = {
+  specialKeys: ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'Win', 'AltLeft', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight', 'Space'],
+  engKeysStabdart: [
+    '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'BackSpace',
+    'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del',
+    'Capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter',
+    'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift',
+    'Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'
+  ],
+  engKeysShift: [
+    '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', 'BackSpace',
+    'Tab', 'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P', '{', '}', '|', 'Del',
+    'Capslock', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', ':', "'", 'Enter',
+    'Shift', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '<', '>', '?', '▲', 'Shift',
+    'Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'
+  ],
+  langRus: [["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "я", "ч", "с", "м", "и", "т", "ь"], ['ё', 'х', 'ъ', 'ж', 'э', 'б', 'ю', '.']],
+  langEng: [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'], ['`', '[', ']', ';', '\'', ',', '.', '/']],
+  switchLanguage: (e) => {
+    const keyboard = document.querySelector('.keyboard');
+    const keyboardLetters = document.querySelectorAll('[keyCode^="Key"]');
+    const keyboardSymbols = document.querySelectorAll('[keyCode="Backquote"],[keyCode="BracketRight"],[keyCode="BracketLeft"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
+    if ((e.ctrlKey) && (e.altKey)) {
+      let lang = (keyboard.classList.contains('lang-eng')) ? ('langRus') : ('langEng')
+      for (let i = 0; i < keyboardLetters.length; i++) {
+        keyboardLetters[i].innerText = keybord[lang][0][i];
+      }
+      for (let i = 0; i < keyboardSymbols.length; i++) {
+        keyboardSymbols[i].innerText = keybord[lang][1][i];
+      }
+      if (lang == 'langRus') {
+        keyboard.classList.add('lang-rus');
+        keyboard.classList.remove('lang-eng');
+      }
+      else
+        keyboard.classList.add('lang-eng');
+      keyboard.classList.remove('lang-rus');
+    }
+  },
   pressKeybordKey: (e) => {
     const key = document.querySelector(`.${e.code}`);
     if (key === null) { return } else {
@@ -11,11 +49,10 @@ let keybord = {
       key.classList.remove('active')
     }
   },
-  specialKeys: ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'Win', 'AltLeft', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight', 'Space'],
-
   printKeybordKey: (e) => {
     const key = document.querySelector(`.${e.code}`);
     const monitor = document.querySelector('.monitor');
+    const keybordKeys = document.querySelectorAll('.key');
 
     if (!monitor.onfocus) { monitor.focus() }
     let posStart = monitor.selectionStart;
@@ -85,14 +122,23 @@ let keybord = {
 
     if (e.key === 'CapsLock') {
       const capsLockey = document.querySelector('.CapsLock');
-      const keysForCaps = document.querySelectorAll('[keyCode^="Key"]');
-      console.log(keysForCaps)
+      const keysForCaps = document.querySelectorAll('[keyCode^="Key"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"],[keyCode="Backquote"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Semicolon"],[keyCode="Quote"]');
+      //console.log(document.querySelectorAll('[keyCode^="Key"], [keyCode^="Digit"]'))
       capsLockey.classList.toggle('active-special-key')
-      keysForCaps.forEach(key=>{
+      keysForCaps.forEach(key => {
         key.classList.toggle('caps-key-on')
-        key.classList.contains('caps-key-on')?( key.textContent = key.textContent.toUpperCase()):( key.textContent = key.textContent.toLowerCase())    
+        key.classList.contains('caps-key-on') ? (key.textContent = key.textContent.toUpperCase()) : (key.textContent = key.textContent.toLowerCase())
       })
     }
+    // if (e.shiftKey) {
+    //   const shiftKey = document.querySelector('.ShiftLeft')
+    //   if (shiftKey.classList.contains('active')) {
+    //     for (let i = 0; i < keybordKeys.length; i++) {
+    //       keybordKeys[i].textContent = keybord.engKeysShift[i]
+    //     }
+    //   }
+
+    // }
 
   }
 
@@ -100,3 +146,4 @@ let keybord = {
 export const pressKeybordKey = keybord.pressKeybordKey;
 export const releaseKeybordKey = keybord.releaseKeybordKey;
 export const printKeybordKey = keybord.printKeybordKey;
+export const switchLanguage = keybord.switchLanguage;
