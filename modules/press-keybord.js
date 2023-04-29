@@ -1,5 +1,5 @@
 let keybord = {
-  specialKeys: ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'Win', 'AltLeft', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight', 'Space'],
+  specialKeys: ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'Win', 'AltLeft', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight', 'Space','MetaLeft'],
   engKeysStabdart: [
     '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'BackSpace',
     'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del',
@@ -62,6 +62,8 @@ let keybord = {
     const key = document.querySelector(`.${e.code}`);
     const monitor = document.querySelector('.monitor');
     const keybordKeys = document.querySelectorAll('.key');
+    const keysForCaps = document.querySelectorAll('[keyCode^="Key"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"],[keyCode="Backquote"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Semicolon"],[keyCode="Quote"]');
+    const capsLockey = document.querySelector('.CapsLock');
 
     if (!monitor.onfocus) { monitor.focus() }
     let posStart = monitor.selectionStart;
@@ -99,6 +101,7 @@ let keybord = {
     if (key.classList.contains('Enter')) {
       monitor.textContent = monitor.textContent.slice(0, posStart) + "\n" + monitor.textContent.slice(posStart);
       monitor.selectionStart = posStart + 1;
+      console.log(monitor.cols)
     }
 
     if (key.classList.contains('Space')) {
@@ -130,24 +133,23 @@ let keybord = {
     }
 
     if (e.key === 'CapsLock') {
-      const capsLockey = document.querySelector('.CapsLock');
-      const keysForCaps = document.querySelectorAll('[keyCode^="Key"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"],[keyCode="Backquote"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Semicolon"],[keyCode="Quote"]');
       capsLockey.classList.toggle('active-special-key')
       keysForCaps.forEach(key => {
         key.classList.toggle('caps-key-on')
         key.classList.contains('caps-key-on') ? (key.textContent = key.textContent.toUpperCase()) : (key.textContent = key.textContent.toLowerCase())
       })
     }
-    // if (e.shiftKey) {
-    //   const shiftKey = document.querySelector('.ShiftLeft')
-    //   if (shiftKey.classList.contains('active')) {
-    //     for (let i = 0; i < keybordKeys.length; i++) {
-    //       keybordKeys[i].textContent = keybord.engKeysShift[i]
-    //     }
-    //   }
+     if (e.shiftKey) {
+       const shiftKey = document.querySelector('.ShiftLeft')
+        {
+        for (let i = 0; i < keysForCaps.length; i++) {
+          console.log()
+          keysForCaps[i].textContent = (capsLockey.classList.contains('active'))?(keysForCaps[i].textContent.toLowerCase()):
+           (keysForCaps[i].textContent.toUpperCase())
+         }
+       }
 
-    // }
-
+     }
   }
 
 }
