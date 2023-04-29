@@ -1,6 +1,14 @@
 import createNewElement from './modules/create-new-element.js';
 import createKeybordKey from './modules/create-keybord-key.js';
-import { switchLanguage, pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js'
+import { caseLanguage, pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js'
+
+const getLocalStorage = () => {
+
+  if (localStorage.getItem('langRu')) {
+    caseLanguage('ru');
+  }
+}
+window.addEventListener('load', getLocalStorage)
 
 const descriptionText = 'Клавиатура создана в операционной системе Windows';
 const languageText = 'Для переключения языка комбинация: левыe ctrl + alt';
@@ -49,7 +57,7 @@ for (let i = 0; i < 5; i++) {
 }
 
 document.addEventListener('keydown', (e) => {
-  switchLanguage(e);
+  caseLanguage(e);
   pressKeybordKey(e);
   printKeybordKey(e);
   e.preventDefault();

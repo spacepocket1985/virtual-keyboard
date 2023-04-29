@@ -16,11 +16,11 @@ let keybord = {
   ],
   langRus: [["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "я", "ч", "с", "м", "и", "т", "ь"], ['ё', 'х', 'ъ', 'ж', 'э', 'б', 'ю', '.']],
   langEng: [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'], ['`', '[', ']', ';', '\'', ',', '.', '/']],
-  switchLanguage: (e) => {
+  caseLanguage: (e) => {
     const keyboard = document.querySelector('.keyboard');
     const keyboardLetters = document.querySelectorAll('[keyCode^="Key"]');
     const keyboardSymbols = document.querySelectorAll('[keyCode="Backquote"],[keyCode="BracketRight"],[keyCode="BracketLeft"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
-    if ((e.ctrlKey) && (e.altKey)) {
+    const switchLanguage = () => {
       let lang = (keyboard.classList.contains('lang-eng')) ? ('langRus') : ('langEng')
       for (let i = 0; i < keyboardLetters.length; i++) {
         keyboardLetters[i].innerText = keybord[lang][0][i];
@@ -31,10 +31,19 @@ let keybord = {
       if (lang == 'langRus') {
         keyboard.classList.add('lang-rus');
         keyboard.classList.remove('lang-eng');
+        localStorage.setItem('langRu', true);
+        localStorage.removeItem('langEng');
       }
-      else
+      else {
         keyboard.classList.add('lang-eng');
-      keyboard.classList.remove('lang-rus');
+        keyboard.classList.remove('lang-rus');
+        localStorage.setItem('langEng', true);
+        localStorage.removeItem('langRu');
+      }
+    }
+    if (e === 'ru') { switchLanguage() }
+    if ((e.ctrlKey) && (e.altKey)) {
+      switchLanguage();
     }
   },
   pressKeybordKey: (e) => {
@@ -123,7 +132,6 @@ let keybord = {
     if (e.key === 'CapsLock') {
       const capsLockey = document.querySelector('.CapsLock');
       const keysForCaps = document.querySelectorAll('[keyCode^="Key"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"],[keyCode="Backquote"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Semicolon"],[keyCode="Quote"]');
-      //console.log(document.querySelectorAll('[keyCode^="Key"], [keyCode^="Digit"]'))
       capsLockey.classList.toggle('active-special-key')
       keysForCaps.forEach(key => {
         key.classList.toggle('caps-key-on')
@@ -146,4 +154,4 @@ let keybord = {
 export const pressKeybordKey = keybord.pressKeybordKey;
 export const releaseKeybordKey = keybord.releaseKeybordKey;
 export const printKeybordKey = keybord.printKeybordKey;
-export const switchLanguage = keybord.switchLanguage;
+export const caseLanguage = keybord.caseLanguage;
