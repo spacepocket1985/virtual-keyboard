@@ -1,32 +1,56 @@
 let keybord = {
   specialKeys: ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'Win', 'AltLeft', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight', 'Space', 'MetaLeft'],
-  shiftKeysOffEng: [
-    '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', '[', ']', '\\', ';', '"', ',', '.', '/'],
   shiftKeysOnEng: [
-    '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '+', '{', '}', '|', ':', "'", '<', '>', '?'],
-  shiftKeysOffRu: [
-    'ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'х', 'ъ', '\\', 'ж', 'э', 'б', 'ю', '.'],
+    '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '{', '}', '|', ':', "'", '<', '>', '?'],
   shiftKeysOnRu: [
-    'Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '+', 'Х', 'Ъ', '/', 'Ж', 'Э', 'Б', 'Ю', ','],
-  langRus: [["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "я", "ч", "с", "м", "и", "т", "ь"], ['ё', 'х', 'ъ', 'ж', 'э', 'б', 'ю', '.']],
-  langEng: [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'], ['`', '[', ']', ';', '\'', ',', '.', '/']],
+    'Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '=', 'Х', 'Ъ', '/', 'Ж', 'Э', 'Б', 'Ю', ','],
+  langRus: [["й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "я", "ч", "с", "м", "и", "т", "ь"], ['ё', 'х', 'ъ', 'ж', 'э', 'б', 'ю', '.'],['1','2','3','4','5','6','7','8','9','0','-','+']],
+  langEng: [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'], ['`', '[', ']', ';', '\'', ',', '.', '/'],['1','2','3','4','5','6','7','8','9','0','-','+']],
   getKeysForCaps: () => {
     return document.querySelectorAll('[keyCode^="Key"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"],[keyCode="Backquote"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Semicolon"],[keyCode="Quote"]');
   },
+  getkeyboardLetters: () =>{
+    const keyboardLetters = document.querySelectorAll('[keyCode^="Key"]');
+    return keyboardLetters
+  },
+  getkeyboardMathSymbols: () =>{
+    const keyboardDigits = document.querySelectorAll('[keyCode^="Digit"],[keyCode="Minus"],[keyCode="Equal"]');
+    return keyboardDigits
+  },
+  getkeyboardSymbols: () =>{
+    const keyboardSymbols = document.querySelectorAll('[keyCode="Backquote"],[keyCode="BracketRight"],[keyCode="BracketLeft"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
+    return keyboardSymbols
+  },
+  
   getKeysForShift: () => {
     return document.querySelectorAll('[keyCode="Backquote"], [keyCode^="Digit"], [keyCode^="Minus"],[keyCode^="Equal"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Backslash"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
   },
   caseLanguage: (e) => {
     const keyboard = document.querySelector('.keyboard');
-    const keyboardLetters = document.querySelectorAll('[keyCode^="Key"]');
-    const keyboardSymbols = document.querySelectorAll('[keyCode="Backquote"],[keyCode="BracketRight"],[keyCode="BracketLeft"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
-    const switchLanguage = () => {
+    const capsLockey = document.querySelector('.CapsLock');
+    const keyboardLetters = keybord.getkeyboardLetters();
+    const keyboardSymbols = keybord.getkeyboardSymbols();
+    if (e === 'ru') { keybord.switchLanguage() }
+    if ((e.ctrlKey) && (e.altKey)) {
+      keybord.switchLanguage();
+    }
+  },
+  switchLanguage: () => {
+    const keyboard = document.querySelector('.keyboard');
+    const capsLockey = document.querySelector('.CapsLock');
+    const keyboardLetters = keybord.getkeyboardLetters();
+    const keyboardSymbols = keybord.getkeyboardSymbols();
+    const keyboardMathSymbols = keybord.getkeyboardMathSymbols();
+    
       let lang = (keyboard.classList.contains('lang-eng')) ? ('langRus') : ('langEng')
       for (let i = 0; i < keyboardLetters.length; i++) {
-        keyboardLetters[i].innerText = keybord[lang][0][i];
+        keyboardLetters[i].innerText = (capsLockey.classList.contains('active-special-key')) ? (keybord[lang][0][i].toUpperCase()) : (keybord[lang][0][i].toLowerCase());
       }
       for (let i = 0; i < keyboardSymbols.length; i++) {
-        keyboardSymbols[i].innerText = keybord[lang][1][i];
+        keyboardSymbols[i].innerText = (capsLockey.classList.contains('active-special-key')) ? (keybord[lang][1][i].toUpperCase()) : (keybord[lang][1][i].toLowerCase());
+      }
+      for (let i = 0; i < keyboardMathSymbols.length; i++) {
+        keyboardMathSymbols[i].innerText = keybord[lang][2][i]
       }
       if (lang == 'langRus') {
         keyboard.classList.add('lang-rus');
@@ -40,11 +64,6 @@ let keybord = {
         localStorage.setItem('langEng', true);
         localStorage.removeItem('langRu');
       }
-    }
-    if (e === 'ru') { switchLanguage() }
-    if ((e.ctrlKey) && (e.altKey)) {
-      switchLanguage();
-    }
   },
   pressKeybordKey: (e) => {
     const key = document.querySelector(`.${e.code}`);
@@ -59,17 +78,8 @@ let keybord = {
       key.classList.remove('active')
     }
     if (e.code == 'ShiftLeft' || e.code == 'ShiftRight') {
-      const keyboard = document.querySelector('.keyboard');
-      const capsLockey = document.querySelector('.CapsLock');
-      const keysForCaps = keybord.getKeysForCaps();
-      const keysForShift = keybord.getKeysForShift();
-      for (let i = 0; i < keysForCaps.length; i++) {
-        (keysForCaps[i].textContent === keysForCaps[i].textContent.toUpperCase()) ? (keysForCaps[i].textContent = keysForCaps[i].textContent.toLowerCase()) : (keysForCaps[i].textContent = keysForCaps[i].textContent.toUpperCase())
-      }
-      let lang = (keyboard.classList.contains('lang-eng')) ? ('shiftKeysOffEng') : ('shiftKeysOffRu')
-      for (let i = 0; i < keysForShift.length; i++) {
-        keysForShift[i].innerText = (capsLockey.classList.contains('active-special-key')) ? (keybord[lang][i].textContent.toLowerCase()):(keybord[lang][i].textContent.toUpperCase())
-      }
+      keybord.switchLanguage();
+      keybord.switchLanguage();
     }
   },
   printKeybordKey: (e) => {
@@ -156,17 +166,14 @@ let keybord = {
     if (e.shiftKey) {
       const keysForShift = keybord.getKeysForShift();
       for (let i = 0; i < keysForCaps.length; i++) {
-        keysForCaps[i].textContent = (capsLockey.classList.contains('active-special-key')) ? (keysForCaps[i].textContent.toLowerCase()):(keysForCaps[i].textContent.toUpperCase())
+        keysForCaps[i].textContent = (capsLockey.classList.contains('active-special-key')) ? (keysForCaps[i].textContent.toLowerCase()) : (keysForCaps[i].textContent.toUpperCase())
       }
       let lang = (keyboard.classList.contains('lang-eng')) ? ('shiftKeysOnEng') : ('shiftKeysOnRu')
       for (let i = 0; i < keysForShift.length; i++) {
-        keysForShift[i].innerText = (capsLockey.classList.contains('active-special-key')) ? (keybord[lang][i].textContent.toLowerCase()):(keybord[lang][i].textContent.toUpperCase())
+        keysForShift[i].innerText = (capsLockey.classList.contains('active-special-key')) ? (keybord[lang][i].toLowerCase()) : (keybord[lang][i].toUpperCase());
       }
-
-
     }
   }
-
 }
 export const pressKeybordKey = keybord.pressKeybordKey;
 export const releaseKeybordKey = keybord.releaseKeybordKey;
