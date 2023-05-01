@@ -65,7 +65,8 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keyup', releaseKeybordKey);
 
 keyboard.addEventListener('mousedown', (e) => {
-   printKeybordKey(e.target);
+  if (e.target.classList.contains('key'))
+   {printKeybordKey(e.target);}
   });
 
   keyboard.addEventListener('mouseup', (e) => {
