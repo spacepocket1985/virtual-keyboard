@@ -1,5 +1,5 @@
 let keybord = {
-  specialKeys: ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ArrowUp', 'ShiftRight', 'ControlLeft', 'Win', 'AltLeft', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight', 'Space', 'MetaLeft'],
+  specialKeys: ['Backspace', 'Tab', 'Delete', 'CapsLock', 'Enter', 'ShiftLeft', 'ShiftRight', 'ControlLeft', 'Win', 'AltLeft', 'AltRight', 'ControlRight', 'Space', 'MetaLeft'],
   shiftKeysOnEng: [
     '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '{', '}', '|', ':', '\'', '<', '>', '?'],
   shiftKeysOnRu: [
@@ -131,52 +131,6 @@ let keybord = {
       if (key.classList.contains('Space')) {
         monitor.textContent = monitor.textContent.slice(0, posStart) + ' ' + monitor.textContent.slice(posStart);
         monitor.selectionStart = posStart + 1;
-      }
-
-      if (key.classList.contains('ArrowUp')) {
-
-        const text = monitor.value.slice(0, posStart);
-        const lastLineLength = text.lastIndexOf('\n');
-        const paddingLeft = posStart - lastLineLength;
-        const newLastLineLength = text.slice(0, lastLineLength).lastIndexOf('\n');
-        let newPosStart = newLastLineLength + paddingLeft;
-        if (lastLineLength < newPosStart) {
-          newPosStart = lastLineLength;
-        }
-        monitor.selectionStart = newPosStart;
-        monitor.selectionEnd = newPosStart;
-      }
-
-      if (key.classList.contains('ArrowDown')) {
-
-        const text = monitor.value.slice(0, posStart);
-        const lastLineLength = text.lastIndexOf('\n');
-        const paddingLeft = posStart - lastLineLength;
-        const newLastLineLength = text.slice(0, lastLineLength).indexOf('\n');
-        let newPosStart = newLastLineLength + paddingLeft;
-        if (lastLineLength < newPosStart) {
-          newPosStart = lastLineLength;
-        }
-        monitor.selectionStart = newPosStart;
-        monitor.selectionEnd = newPosStart;
-      }
-
-      if (key.classList.contains('ArrowLeft')) {
-        monitor.selectionStart--;
-        monitor.selectionEnd = posEnd - 1;
-      }
-
-      if (key.classList.contains('ArrowRight')) {
-        monitor.selectionEnd++;
-        monitor.selectionStart = posStart + 1;
-      }
-
-      if (e.shiftKey && e.key === 'ArrowLeft') {
-        monitor.selectionEnd = monitor.selectionEnd + 1;
-      }
-
-      if (e.shiftKey && e.key === 'ArrowRight') {
-        monitor.selectionStart = monitor.selectionStart - 1;
       }
 
       if (key.classList.contains('CapsLock')) {
