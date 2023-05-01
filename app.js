@@ -1,14 +1,14 @@
 import createNewElement from './modules/create-new-element.js';
 import createKeybordKey from './modules/create-keybord-key.js';
-import { caseLanguage, pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js'
+import { caseLanguage, pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js';
 
 const getLocalStorage = () => {
 
   if (localStorage.getItem('langRu')) {
     caseLanguage('ru');
   }
-}
-window.addEventListener('load', getLocalStorage)
+};
+window.addEventListener('load', getLocalStorage);
 
 const descriptionText = 'Клавиатура создана в операционной системе Windows';
 const languageText = 'Для переключения языка комбинация: левыe ctrl + alt';
@@ -46,7 +46,7 @@ const keyEventCode = [
   ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
   ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
   ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight']
-]
+];
 
 for (let i = 0; i < 5; i++) {
   let keyboardLine = createNewElement('div', 'keyboard-line');
@@ -66,14 +66,14 @@ document.addEventListener('keyup', releaseKeybordKey);
 
 keyboard.addEventListener('mousedown', (e) => {
    printKeybordKey(e.target);
-  })
+  });
 
   keyboard.addEventListener('mouseup', (e) => {
     releaseKeybordKey(e.target);
-   })
+   });
 
 keyboard.onmousedown = (e) => {
   if(document.activeElement === monitor) {
       e.preventDefault();
   }
-}
+};

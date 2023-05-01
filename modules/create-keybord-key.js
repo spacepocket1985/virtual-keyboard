@@ -4,6 +4,6 @@ const createKeybordKey = (tagName, className, innerText, insertPlace) => {
   keybordKey.setAttribute('keyCode', className);
   keybordKey.innerText = innerText;
   insertPlace.append(keybordKey);
-}
+};
 
 export default createKeybordKey;

@@ -3,7 +3,7 @@ const createNewElement=(tagName, className,innerText)=>{
   const element = document.createElement(tagName);
   element.classList.add(className);
   element.innerText = innerText;
-return element
-}
+return element;
+};
 
 export default createNewElement;
