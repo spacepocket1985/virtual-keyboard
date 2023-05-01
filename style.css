@@ -22,12 +22,13 @@ body {
 
 .monitor {
   display: block;
-  width: 70rem;
+  width: 68rem;
   height: 20rem;
   margin: 1rem auto 1rem;
   padding: 1rem;
   font-size: 1.5rem;
   color: #444444;
+  border: .5rem solid #edb20f;
 }
 
 .title {
@@ -77,7 +78,7 @@ body {
   background-image: linear-gradient(to bottom, #edb20f, #b6810d);
   cursor: pointer;
   user-select: none;
-  transition: all 0.7s;
+  transition: all 0.3s;
 }
 
 .key:hover,
@@ -87,6 +88,10 @@ body {
   color: #edb20f;
   border-radius: .4rem;
   border-color: #edb20f;
+}
+
+.key:hover {
+  transform: scale(1.2);
 }
 
 .key:active {
