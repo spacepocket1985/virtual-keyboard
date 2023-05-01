@@ -64,3 +64,16 @@ document.addEventListener('keydown', (e) => {
 });
 document.addEventListener('keyup', releaseKeybordKey);
 
+keyboard.addEventListener('mousedown', (e) => {
+   printKeybordKey(e.target);
+  })
+
+  keyboard.addEventListener('mouseup', (e) => {
+    releaseKeybordKey(e.target);
+   })
+
+keyboard.onmousedown = (e) => {
+  if(document.activeElement === monitor) {
+      e.preventDefault();
+  }
+}
