@@ -49,10 +49,10 @@ const keyEventCode = [
   ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'],
 ];
 
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 5; i += 1) {
   const keyboardLine = createNewElement('div', 'keyboard-line');
   keyboard.append(keyboardLine);
-  for (let j = 0; j < keyboardSymbol[i].length; j++) {
+  for (let j = 0; j < keyboardSymbol[i].length; j += 1) {
     createKeybordKey('div', keyEventCode[i][j], keyboardSymbol[i][j], keyboardLine);
   }
 }

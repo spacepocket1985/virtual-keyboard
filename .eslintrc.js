@@ -15,5 +15,11 @@ module.exports = {
     semi: ['error', 'always'],
     'no-multiple-empty-lines': 'error',
     'no-trailing-spaces': 'error',
+    'import/extensions': [
+      'error',
+      {
+        js: 'ignorePackages',
+      },
+    ],
   },
 };
