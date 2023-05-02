@@ -1,9 +1,10 @@
 import createNewElement from './modules/create-new-element.js';
 import createKeybordKey from './modules/create-keybord-key.js';
-import { caseLanguage, pressKeybordKey, releaseKeybordKey, printKeybordKey } from './modules/press-keybord.js';
+import {
+  caseLanguage, pressKeybordKey, releaseKeybordKey, printKeybordKey,
+} from './modules/press-keybord.js';
 
 const getLocalStorage = () => {
-
   if (localStorage.getItem('langRu')) {
     caseLanguage('ru');
   }
@@ -37,7 +38,7 @@ const keyboardSymbol = [
   ['Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'Del'],
   ['Capslock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', '"', 'Enter'],
   ['Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift'],
-  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl']
+  ['Ctrl', 'Win', 'Alt', ' ', 'Alt', '◄', '▼', '►', 'Ctrl'],
 ];
 
 const keyEventCode = [
@@ -45,11 +46,11 @@ const keyEventCode = [
   ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash', 'Delete'],
   ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
   ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ArrowUp', 'ShiftRight'],
-  ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight']
+  ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'ArrowLeft', 'ArrowDown', 'ArrowRight', 'ControlRight'],
 ];
 
 for (let i = 0; i < 5; i++) {
-  let keyboardLine = createNewElement('div', 'keyboard-line');
+  const keyboardLine = createNewElement('div', 'keyboard-line');
   keyboard.append(keyboardLine);
   for (let j = 0; j < keyboardSymbol[i].length; j++) {
     createKeybordKey('div', keyEventCode[i][j], keyboardSymbol[i][j], keyboardLine);
@@ -65,16 +66,15 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keyup', releaseKeybordKey);
 
 keyboard.addEventListener('mousedown', (e) => {
-  if (e.target.classList.contains('key'))
-   {printKeybordKey(e.target);}
-  });
+  if (e.target.classList.contains('key')) { printKeybordKey(e.target); }
+});
 
-  keyboard.addEventListener('mouseup', (e) => {
-    releaseKeybordKey(e.target);
-   });
+keyboard.addEventListener('mouseup', (e) => {
+  releaseKeybordKey(e.target);
+});
 
 keyboard.onmousedown = (e) => {
-  if(document.activeElement === monitor) {
-      e.preventDefault();
+  if (document.activeElement === monitor) {
+    e.preventDefault();
   }
 };
