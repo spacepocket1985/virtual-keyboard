@@ -1,9 +1,9 @@
-const createNewElement=(tagName, className,innerText)=>{
-  innerText =  (innerText)?(innerText):('');
+const createNewElement = (tagName, className, innerText) => {
+  const text = (innerText) || ('');
   const element = document.createElement(tagName);
   element.classList.add(className);
-  element.innerText = innerText;
-return element;
+  element.innerText = text;
+  return element;
 };
 
 export default createNewElement;
