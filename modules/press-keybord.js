@@ -4,8 +4,8 @@ let keybord = {
     '~', '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '_', '=', '{', '}', '|', ':', '\'', '<', '>', '?'],
   shiftKeysOnRu: [
     'Ё', '!', '"', '№', ';', '%', ':', '?', '*', '(', ')', '_', '=', 'Х', 'Ъ', '/', 'Ж', 'Э', 'Б', 'Ю', ','],
-  langRus: [['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь'], ['ё', 'х', 'ъ', 'ж', 'э', 'б', 'ю', '.'], ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+']],
-  langEng: [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'], ['`', '[', ']', ';', '\'', ',', '.', '/'], ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+']],
+  langRus: [['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'я', 'ч', 'с', 'м', 'и', 'т', 'ь'], ['ё', 'х', 'ъ','\\', 'ж', 'э', 'б', 'ю', '.'], ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+']],
+  langEng: [['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm'], ['`', '[', ']','\\', ';', '"', ',', '.', '/'], ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '+']],
   getKeysForCaps: () => {
     return document.querySelectorAll('[keyCode^="Key"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"],[keyCode="Backquote"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Semicolon"],[keyCode="Quote"]');
   },
@@ -18,7 +18,7 @@ let keybord = {
     return keyboardDigits;
   },
   getkeyboardSymbols: () => {
-    const keyboardSymbols = document.querySelectorAll('[keyCode="Backquote"],[keyCode="BracketRight"],[keyCode="BracketLeft"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
+    const keyboardSymbols = document.querySelectorAll('[keyCode="Backquote"],[keyCode="BracketRight"],[keyCode="BracketLeft"],[keyCode="Backslash"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
     return keyboardSymbols;
   },
 
@@ -26,10 +26,6 @@ let keybord = {
     return document.querySelectorAll('[keyCode="Backquote"], [keyCode^="Digit"], [keyCode^="Minus"],[keyCode^="Equal"],[keyCode="BracketLeft"],[keyCode="BracketRight"],[keyCode="Backslash"],[keyCode="Semicolon"],[keyCode="Quote"],[keyCode="Comma"],[keyCode="Period"],[keyCode="Slash"]');
   },
   caseLanguage: (e) => {
-    const keyboard = document.querySelector('.keyboard');
-    const capsLockey = document.querySelector('.CapsLock');
-    const keyboardLetters = keybord.getkeyboardLetters();
-    const keyboardSymbols = keybord.getkeyboardSymbols();
     if (e === 'ru') { keybord.switchLanguage(); }
     if ((e.ctrlKey) && (e.altKey)) {
       keybord.switchLanguage();
