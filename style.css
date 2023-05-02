@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+}
+
+body {
+  background-color: #fff;
+}
+
+.wrapper {
+  width: 80rem;
+  height: 80vh;
+  margin: 1vh auto;
+}
+
+.monitor {
+  display: block;
+  width: 68rem;
+  height: 20rem;
+  margin: 1rem auto 1rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: #444444;
+  border: .5rem solid #edb20f;
+}
+
+.title {
+  font-size: 2.3rem;
+  padding: 2rem;
+  color: #edb20f;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.description,
+.language {
+  font-size: 1.6rem;
+  margin: 1rem auto;
+  text-align: center;
+  
+}
+
+.language {
+  padding-bottom: 3rem;
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 70.4rem;
+  margin: 0 auto;
+  padding: .5rem 0;
+  background: #545353;
+  border: .3rem solid #edb20f;
+  border-radius: .5rem;
+}
+
+.keyboard-line {
+  display: flex;
+  width: 69rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  margin-right: .5rem;
+  margin-bottom: .5rem;
+  width: 4rem;
+  height: 4rem;
+  font-size: 1.6rem;
+  line-height: 4rem;
+  border-radius: .4rem;
+  border: .2rem solid transparent;
+  text-align: center;
+  background-image: linear-gradient(to bottom, #edb20f, #b6810d);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+}
+
+.key:hover,
+.key:active,
+.active-special-key {
+  background-image: linear-gradient(to bottom, #252524, #5b5a58);
+  color: #edb20f;
+  border-radius: .4rem;
+  border-color: #edb20f;
+}
+
+.key:hover {
+  transform: scale(1.2);
+}
+
+.key:active {
+  border-radius: 4rem;
+  box-shadow: inset -2px -2px 4px #252524,
+    inset 2px 2px 4px #393939;
+}
+
+.active {
+  color: #edb20f;
+  background-image: linear-gradient(to bottom, #252524, #5b5a58);
+  border-radius: 4rem;
+  box-shadow: inset -2px -2px 4px #252524,
+    inset 2px 2px 4px #393939;
+}
+
+.keyboard-line .key:last-child {
+  margin-right: 0;
+}
+
+.Backspace,
+.CapsLock,
+.ShiftLeft {
+  width: 10rem;
+}
+
+.Tab {
+  width: 5rem;
+}
+
+.Delete {
+  width: 4.4rem;
+}
+
+.Enter,
+.ShiftRight {
+  width: 9.3rem;
+}
+
+.Space {
+  width: 32.5rem;
+}
+
+.caps-key-on {
+  text-transform: uppercase;
+}
